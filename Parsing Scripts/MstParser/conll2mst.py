@@ -20,9 +20,9 @@ for line in infile:
         par += sent[6] + "\t";
     else:
         outfile.write(wrds); outfile.write('\n'); wrds = "";
-        outfile.write(pos); outfile.write('\n');  pos = "";
+        outfile.write(pos);  outfile.write('\n');  pos = "";
         outfile.write(labs); outfile.write('\n'); labs = "";
-        outfile.write(par); outfile.write('\n');  par = "";
+        outfile.write(par);  outfile.write('\n');  par = "";
         outfile.write('\n');
 		
 # Close Input and Output Files
