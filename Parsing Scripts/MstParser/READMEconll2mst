@@ -4,7 +4,7 @@ http://www.seas.upenn.edu/~strctlrn/MSTParser/MSTParser.html
 In order to use this code follow these steps (for Windows op):
 1. Copy the script into your python directory with py suffix.
 2. Create an output file into which you want the results.
-3. Run the code from you python directory like so:
+3. Run the code from your python directory like so:
 	python conll2mst.py *input file path* *output file path*
 	For example:
 	python conll2mst.py C:\test\test.conll C:\test\out.lab
