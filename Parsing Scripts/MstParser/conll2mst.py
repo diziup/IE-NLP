@@ -1,5 +1,6 @@
 #! /usr/bin/python
 #See READMEconll2mst file for credits and instructions
+#This script takes conll format and transfers it to MstParser format
 import sys;
 
 # Open Input File for Reading
