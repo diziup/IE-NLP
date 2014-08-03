@@ -8,3 +8,5 @@ In order to use this code follow these steps (for Windows op):
 	python conll2mst.py *input file path* *output file path*
 	For example:
 	python conll2mst.py C:\test\test.conll C:\test\out.lab
+	
+The code is provided as is with no warranty. Any feedback would be greatly appreciated.
