@@ -449,7 +449,7 @@ public class DependencyDecoder {
 	    System.out.println();
 	}
 	
-	//stat. object Counting the number of sentences the contain a cycle
+	//stat. object Counting the number of sentences that contain a cycle
 	Statistics stat = Statistics.getInstance( );
 	stat.addCycleSentence( );
 	//stat. object Counting the number of cycles	
