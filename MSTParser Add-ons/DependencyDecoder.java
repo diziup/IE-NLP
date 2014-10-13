@@ -347,8 +347,6 @@ public class DependencyDecoder {
 		
 	int[] par = new int[curr_nodes.length];
 	int numWords = curr_nodes.length;
-	//stat. object instance
-	Statistics stat = Statistics.getInstance( );	
 	int realNumWords = numWords; //Will contain the actual number of words in each iter.	
 	// create best graph
 	par[0] = -1;
@@ -438,22 +436,28 @@ public class DependencyDecoder {
 
 	int max_cyc = 0;
 	int wh_cyc = 0;
+	//stat. object instance
+	Statistics stat = Statistics.getInstance( );	
 	String str = "";
 	//Find the biggest cycle
 	for(int i = 0; i < cycles.size(); i++) {
 	    TIntIntHashMap cycle = (TIntIntHashMap)cycles.get(i);
 		//Build the cycles lengths string
 		if (str.equals("")) {
-			str += Integer.toString(cycle.size());
+			str.concat(Integer.toString(cycle.size()));			
 		}
 		else
-			str += "," + Integer.toString(cycle.size());
-		}
+		{
+			str.concat(",");
+			str.concat(Integer.toString(cycle.size()));
+		} 
 	    if(cycle.size() > max_cyc) { max_cyc = cycle.size(); wh_cyc = i; }
 	}
 	//stat. writing the output
 	//Add to it the max, count of cycles and actual number of words 
-	stat.writeToStatsFile(str + "|" + Integer.toString(max_cyc) + "|" + Integer.toString(cycles.size()) + "|" + Integer.toString(realNumWords));
+	str.concat("|");str.concat(Integer.toString(max_cyc));str.concat("|");str.concat(Integer.toString(cycles.size()));
+	str.concat("|");str.concat(Integer.toString(realNumWords));
+	stat.writeToStatsFile(str);
 	
 	TIntIntHashMap cycle = (TIntIntHashMap)cycles.get(wh_cyc);
 	int[] cyc_nodes = cycle.keys();

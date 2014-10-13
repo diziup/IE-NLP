@@ -1,7 +1,6 @@
 package mstparser;
 
 import java.io.*;
-import java.nio.file;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.StringTokenizer;
@@ -106,7 +105,8 @@ public class Statistics {
    }
 	//Writes the input string s to the Stats file
    protected static void writeToStatsFile( String s ) {
-		try (BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(statistics.statsFile),"UTF8"))) {
+		try {
+			BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(statistics.statsFile),"UTF8"));
 			writer.write(s, 0, s.length());
 			writer.write("\n");
 			writer.close();
