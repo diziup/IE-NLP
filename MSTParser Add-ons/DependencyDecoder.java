@@ -449,10 +449,11 @@ public class DependencyDecoder {
 	    System.out.println();
 	}
 	
-	//stat. object Counting the number of sentences that contain a cycle
+	//stat. object instance
 	Statistics stat = Statistics.getInstance( );
+	//stat. object Counting the sentences that has more than one cycle in them	
 	stat.addCycleSentence( );
-	//stat. object Counting the number of cycle iterations	
+	//stat. object Counting the number of cycle iterations(The number of times at least one cycle was detected)	
 	stat.addCycle( );
 	//stat. object Counting the number of nodes in the biggest cycle
 	stat.addCycleNodes(max_cyc);

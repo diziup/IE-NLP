@@ -68,7 +68,8 @@ public class Statistics {
    } 
    protected static void setHasCycle( int val ) {
       statistics.hasCycle = val; 
-   }     
+   }
+   
    protected static void addCycleSentence( ) {
 	  if (statistics.hasCycle == 1) { 
 		  addManyCycle( ); 
