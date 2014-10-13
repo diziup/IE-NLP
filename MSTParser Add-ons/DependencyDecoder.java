@@ -347,12 +347,17 @@ public class DependencyDecoder {
 		
 	int[] par = new int[curr_nodes.length];
 	int numWords = curr_nodes.length;
-		
+	//stat. object instance
+	Statistics stat = Statistics.getInstance( );	
+	int realNumWords = numWords; //Will contain the actual number of words in each iter.	
 	// create best graph
 	par[0] = -1;
 	for(int i = 1; i < par.length; i++) {
 	    // only interested in current nodes
-	    if(!curr_nodes[i]) continue;
+	    if(!curr_nodes[i]) {
+			realNumWords--;
+			continue;
+		}	
 	    double maxScore = scoreMatrix[0][i];
 	    par[i] = 0;
 	    for(int j = 0; j < par.length; j++) {
@@ -433,11 +438,23 @@ public class DependencyDecoder {
 
 	int max_cyc = 0;
 	int wh_cyc = 0;
+	String str = "";
+	//Find the biggest cycle
 	for(int i = 0; i < cycles.size(); i++) {
 	    TIntIntHashMap cycle = (TIntIntHashMap)cycles.get(i);
+		//Build the cycles lengths string
+		if (str.equals("")) {
+			str += Integer.toString(cycle.size());
+		}
+		else
+			str += "," + Integer.toString(cycle.size());
+		}
 	    if(cycle.size() > max_cyc) { max_cyc = cycle.size(); wh_cyc = i; }
 	}
-		
+	//stat. writing the output
+	//Add to it the max, count of cycles and actual number of words 
+	stat.writeToStatsFile(str + "|" + Integer.toString(max_cyc) + "|" + Integer.toString(cycles.size()) + "|" + Integer.toString(realNumWords));
+	
 	TIntIntHashMap cycle = (TIntIntHashMap)cycles.get(wh_cyc);
 	int[] cyc_nodes = cycle.keys();
 	int rep = cyc_nodes[0];
@@ -449,14 +466,14 @@ public class DependencyDecoder {
 	    System.out.println();
 	}
 	
-	//stat. object instance
-	Statistics stat = Statistics.getInstance( );
+
 	//stat. object Counting the sentences that has more than one cycle in them	
 	stat.addCycleSentence( );
 	//stat. object Counting the number of cycle iterations(The number of times at least one cycle was detected)	
 	stat.addCycle( );
 	//stat. object Counting the number of nodes in the biggest cycle
 	stat.addCycleNodes(max_cyc);
+	
 	double cyc_weight = 0.0;
 	for(int j = 0; j < cyc_nodes.length; j++) {
 	    cyc_weight += scoreMatrix[par[cyc_nodes[j]]][cyc_nodes[j]];

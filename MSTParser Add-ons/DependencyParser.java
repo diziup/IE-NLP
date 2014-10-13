@@ -348,7 +348,12 @@ public class DependencyParser {
 	    }			
 	    if(pair[0].equals("decode-type")) {
 		decodeType = pair[1];
-	    }			
+	    }	
+	    if(pair[0].equals("stats-file")) {
+		//stat. object for setting the statistics output file
+		Statistics stat = Statistics.getInstance( );
+		stat.setStatsFile(pair[1]);
+	    }		
 	}
 	trainforest = trainfile == null ? null : trainfile+".forest";
 	testforest = testfile == null ? null : testfile+".forest";
