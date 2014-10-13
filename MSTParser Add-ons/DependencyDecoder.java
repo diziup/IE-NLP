@@ -438,25 +438,26 @@ public class DependencyDecoder {
 	int wh_cyc = 0;
 	//stat. object instance
 	Statistics stat = Statistics.getInstance( );	
-	String str = "";
+	String str = " ";
 	//Find the biggest cycle
 	for(int i = 0; i < cycles.size(); i++) {
 	    TIntIntHashMap cycle = (TIntIntHashMap)cycles.get(i);
 		//Build the cycles lengths string
-		if (str.equals("")) {
-			str.concat(Integer.toString(cycle.size()));			
+		if (i == 0) {
+			str = Integer.toString((int)cycle.size());			
 		}
 		else
 		{
-			str.concat(",");
-			str.concat(Integer.toString(cycle.size()));
+			str = str.concat(",");
+			str = str.concat(Integer.toString((int)cycle.size()));
 		} 
 	    if(cycle.size() > max_cyc) { max_cyc = cycle.size(); wh_cyc = i; }
 	}
 	//stat. writing the output
 	//Add to it the max, count of cycles and actual number of words 
-	str.concat("|");str.concat(Integer.toString(max_cyc));str.concat("|");str.concat(Integer.toString(cycles.size()));
-	str.concat("|");str.concat(Integer.toString(realNumWords));
+	str = str.concat("|");str = str.concat(Integer.toString(max_cyc));str = str.concat("|");
+	str = str.concat(Integer.toString((int)cycles.size()));str = str.concat("|");
+	str = str.concat(Integer.toString(realNumWords));
 	stat.writeToStatsFile(str);
 	
 	TIntIntHashMap cycle = (TIntIntHashMap)cycles.get(wh_cyc);

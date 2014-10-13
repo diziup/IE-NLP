@@ -305,6 +305,8 @@ public class DependencyParser {
     }
 
     public static void processArguments(String[] args) {
+	//stat. object for the stats-file
+	Statistics stat = Statistics.getInstance( );
 	for(int i = 0; i < args.length; i++) {
 	    String[] pair = args[i].split(":");
 	    if(pair[0].equals("train")) {
@@ -351,7 +353,6 @@ public class DependencyParser {
 	    }	
 	    if(pair[0].equals("stats-file")) {
 		//stat. object for setting the statistics output file
-		Statistics stat = Statistics.getInstance( );
 		stat.setStatsFile(pair[1]);
 	    }		
 	}
@@ -363,6 +364,7 @@ public class DependencyParser {
 	System.out.println("test-file: " + testfile);
 	System.out.println("gold-file: " + goldfile);
 	System.out.println("output-file: " + outfile);
+	System.out.println("stats-file: " + stat.getStatsFile());
 	System.out.println("model-name: " + modelName);
 	System.out.println("train: " + train);
 	System.out.println("test: " + test);

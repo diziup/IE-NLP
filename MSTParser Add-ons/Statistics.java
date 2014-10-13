@@ -11,7 +11,7 @@ public class Statistics {
    private static Statistics statistics = new Statistics( );
    protected int modeFlag; 		    	//1 = Train, 2 = Test
    protected int hasCycle;				//1 = The sentence has a cycle, 0 = doesn't have
-   protected String statsFile = "stat.txt"; //The statistics file
+   protected String statsFile = "stats.txt"; //The statistics file
    //Train data counters
    protected int trainCycleNum; 		//Counts the total # of cycles
    protected int trainSentenceNum; 	    //Counts the total # of sentences
@@ -67,6 +67,10 @@ public class Statistics {
 	  }					       
    }
    
+   protected static String getStatsFile( ) {
+      return statistics.statsFile; 
+   } 
+   
    protected static void setStatsFile( String val ) {
       statistics.statsFile = val; 
    } 
@@ -106,10 +110,9 @@ public class Statistics {
 	//Writes the input string s to the Stats file
    protected static void writeToStatsFile( String s ) {
 		try {
-			BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(statistics.statsFile),"UTF8"));
-			writer.write(s, 0, s.length());
-			writer.write("\n");
-			writer.close();
+			PrintWriter newline = new PrintWriter(new BufferedWriter(new FileWriter(statistics.statsFile, true)));
+			newline.println(s);
+			newline.close();			
 		} catch (IOException x) {
 			System.err.format("IOException: %s%n", x);
 		}
