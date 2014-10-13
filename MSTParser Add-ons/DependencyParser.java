@@ -270,8 +270,9 @@ public class DependencyParser {
 	    int numTypes = pipe.typeAlphabet.size();
 	    System.out.println("Num Feats: " + numFeats);	
 	    System.out.println("Num Edge Labels: " + numTypes);
-		//Set stat. flag to Train
+		//Set stat. flag to Train and write to file
 		stat.setFlag(1);
+		stat.writeToStatsFile("Train data:");
 	    dp.train(trainingData,trainfile,trainforest);
 	
 	    System.out.print("Saving model ... ");
@@ -291,8 +292,9 @@ public class DependencyParser {
 	    System.out.println("done.");
 
 	    pipe.closeAlphabets();
-		//Set stat. flag to Test
+		//Set stat. flag to Test and write to file
 		stat.setFlag(2);
+		stat.writeToStatsFile("Test data:");
 	    dp.outputParses(testfile,outfile);
 	}
 		
