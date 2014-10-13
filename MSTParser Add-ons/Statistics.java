@@ -11,7 +11,7 @@ public class Statistics {
    private static Statistics statistics = new Statistics( );
    protected int modeFlag; 		    	//1 = Train, 2 = Test
    protected int hasCycle;				//1 = The sentence has a cycle, 0 = doesn't have
-   protected String statsFile;			//The statistics file
+   protected String statsFile = "stat.txt"; //The statistics file
    //Train data counters
    protected int trainCycleNum; 		//Counts the total # of cycles
    protected int trainSentenceNum; 	    //Counts the total # of sentences
