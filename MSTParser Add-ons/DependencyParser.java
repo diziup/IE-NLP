@@ -252,7 +252,7 @@ public class DependencyParser {
 	processArguments(args);
 	//stat. object for later use
 	Statistics stat = Statistics.getInstance( );
-			
+	
 	if(train) {
 		
 	    DependencyPipe pipe =
@@ -360,6 +360,9 @@ public class DependencyParser {
 	}
 	trainforest = trainfile == null ? null : trainfile+".forest";
 	testforest = testfile == null ? null : testfile+".forest";
+	
+	//stat. building a new stats-file name, in case for some reason processArguments failed
+	if(stat.getStatsFile() == "stats.txt") stat.setStatsFile("stats".concat(outfile));
 	
 	System.out.println("------\nFLAGS\n------");
 	System.out.println("train-file: " + trainfile);
