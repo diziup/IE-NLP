@@ -272,7 +272,7 @@ public class DependencyParser {
 	    System.out.println("Num Edge Labels: " + numTypes);
 		//Set stat. flag to Train and write to file
 		stat.setFlag(1);
-		stat.writeToStatsFile("Train data:");
+		stat.writeToStatsFile("Train data for " + outfile + " :");
 	    dp.train(trainingData,trainfile,trainforest);
 	
 	    System.out.print("Saving model ... ");
@@ -294,7 +294,7 @@ public class DependencyParser {
 	    pipe.closeAlphabets();
 		//Set stat. flag to Test and write to file
 		stat.setFlag(2);
-		stat.writeToStatsFile("Test data:");
+		stat.writeToStatsFile("Test data for " + outfile + " :");
 	    dp.outputParses(testfile,outfile);
 	}
 		
