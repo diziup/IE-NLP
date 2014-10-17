@@ -21,19 +21,22 @@ for line in f:
 	 continue;
 	sent = line.split('|');	
 #Get the data	
+#Train data
 	if state == "train":
 	 if len(sent) > 0:
 	  i = int(sent[1]);
 	  if i >= 0:   
 	   train[i] += 1;
 	   totaltrain += 1;
+#Test data	   
 	if	state == "test":
 	 if len(sent) > 0:
-	  i = int(sent[0]);
+	  i = int(sent[1]);
 	  if i >= 0:
 	   test[i] += 1;
 	   totaltest += 1;
 
+avg = 0;
 if totaltrain > 0:	   
 	print "\nTrain data for ",
 	print totaltrain,
@@ -43,12 +46,16 @@ if totaltrain > 0:
 	  continue;
 	 print "Cycle length:",
 	 print j,
-	 print "Percentage: ",
+	 print "Percentage:",
 	 per = train[j] / totaltrain;
 	 print per,
-	 print "Weight: ", 
+	 print "Weight:", 
 	 print (j * per);
+	 avg += j * per;	 
+print "The average length is:", 
+print avg;	 
 
+avg = 0;
 if totaltest > 0:	 
 	print "\nTest data for ",
 	print totaltest,
@@ -58,11 +65,14 @@ if totaltest > 0:
 	  continue;
 	 print "Cycle length:",
 	 print j,
-	 print "Percentage: ",
+	 print "Percentage:",
 	 per = test[j] / totaltest;
 	 print per,
-	 print "Weight: ", 
+	 print "Weight:", 
 	 print (j * per);
- 
+	 avg += j * per;	 
+print "The average length is:", 
+print avg;
+
 f.close();
 
