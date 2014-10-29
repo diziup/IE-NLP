@@ -1,0 +1,7 @@
+a sampler for the conll format, it accepts an input file, output destination file and a number (or percent),
+samples according to input and writes the sampled data to the output file
+
+usage: 
+conllSampler.py trainData.conll sampledDataFileName.conll 80
+conllSampler.py trainData.conll sampledDataFileName.conll 15%
+conllSampler.py trainData.conll sampledDataFileName.conll 0.1%
