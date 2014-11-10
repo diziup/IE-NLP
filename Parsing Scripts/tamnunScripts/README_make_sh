@@ -1,0 +1,20 @@
+a script for easily creating files to send in tamnun, can be wrapped in a script to easily send multiple jobs to PBS
+
+usage:
+make_sh.py inputFile
+
+input file format:
+filename={output file name to create}
+workdir={workdir for PBS job - will create it under $HOME if it does not exist}
+command={cmd to send}
+userEmail={email}
+q={q}
+LD_LIBRARY_PATH={dir}
+
+example:
+filename=parser.sh
+workdir=MSTParser/
+command=java -classpath ".:lib/trove.jar" mstparser.DependencyParser \  train train-file:data/german_gdt_train.lab model-name:depgerman.model \  test test-file:data/german_gdt_test.lab output-file:outgerman.txt \  decode-type:non-proj > outputgerman.txt
+userEmail=ilantc@tx.technion.ac.il
+q=np_weekend
+LD_LIBRARY_PATH=/u/ilantc/TurboParser-2.2.0/
