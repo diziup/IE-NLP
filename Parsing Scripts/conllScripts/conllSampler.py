@@ -11,6 +11,9 @@ infile = open(sys.argv[1],'rt');
 outfile = open(sys.argv[2],'w');
 
 numSentences = sys.argv[3];
+outfile_rest = "";
+if (len(sys.argv) > 4):
+    outfile_rest = open(sys.argv[4], 'w'); 
 
 allSentences = [];
 currSentence = [];
@@ -44,18 +47,29 @@ print('sampling ' + str(numSentences) + ' out of ' + str(sentenceCount) + ' sent
 allSentecesIndices = [];
 while (len(allSentecesIndices) < numSentences):
     randNumber = int(math.floor(random.random() * sentenceCount))
-    print('rand val is ' + str(randNumber))
+#     print('rand val is ' + str(randNumber))
     if (allSentecesIndices.count(randNumber) == 0):
-	print('adding to allSentences, new len is ' + str(len(allSentecesIndices)) )
+# 	print('adding to allSentences, new len is ' + str(len(allSentecesIndices)) )
         allSentecesIndices.append(randNumber) 
+        if (len(allSentecesIndices) % 1000 == 0):
+            print('sampled ' + str(len(allSentecesIndices)) + ' out of ' + str(numSentences))
 
-print('sampled indices ' + str(allSentecesIndices))
+# print('sampled indices ' + str(allSentecesIndices))
 
-# write output file
-for index1 in allSentecesIndices:
-    for line in allSentences[index1]:
+# write output file 
+for index in allSentecesIndices:
+    for line in allSentences[index]:
     	outfile.write(line)
     outfile.write("\n")
+
+# write the "unsampled" sentences to second file if it is provided
+if (outfile_rest != ""):
+    for i in range(0,len(allSentences)):
+        if allSentecesIndices.count(i) == 0:
+            for line in allSentences[i]:
+                outfile_rest.write(line)
+            outfile_rest.write("\n")
+    outfile_rest.close();
 
 # Close Input and Output Files
 infile.close();
